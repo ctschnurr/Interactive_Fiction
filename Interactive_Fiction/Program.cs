@@ -14,8 +14,11 @@ namespace Interactive_Fiction
         {
           //  |------------------------------------------------------------------------------------------------------------|
             {"Interactive Fiction Prototype\t*****************************\t\tBy Chris Schnurr", "blank", "blank", "blank", "blank"},
-            {"   A dusty dirt road comes to a crossroads. A sign at the fork indicates that there is a village to the left\tand a forest to the right. ", "Choice A1", "Choice B1", "3", "4"},
-            {"Story Page 2", "Choice A2", "Choice B2", "5", "6",},
+            {"Crossroads\t**********\t\tA dusty dirt road comes to a crossroads. A sign at the fork indicates that there is a village to the left\tand a forest to the right. ", "Left to Village", "Right to Forest", "2", "3"},
+            {"Village\t*******\t\tThe Village Square is a bustling hive of activity. Citizens go about their daily business and soldiers patrol the area.\tThe village pathways lead in different directions.\t\tTo the west is the Market District.\tTo the right is the road to the Castle.", "West to the Market District", "East to the Castle", "4", "5",},
+            {"Forest\t******\t\t", "Back to Crossroads", "Back to Crossroads", "1", "1",},
+            {"Market District\t***************\t\t", "Back to Crossroads", "Back to Crossroads", "1", "1",},
+            {"Castle\t******\t\t", "Back to Crossroads", "Back to Crossroads", "1", "1",},
         };
 
         static int pageNumber = 0;
@@ -24,7 +27,6 @@ namespace Interactive_Fiction
         static int defaultColumn = 5;
         static string[] options = {"blank" , "blank"};
         static int newChoice;
-        static string playerChose;
 
         static void Main(string[] args)
         {
@@ -44,7 +46,7 @@ namespace Interactive_Fiction
 
             while (gameOver == false)
             {
-                for (int count = 1; count < storyBook.GetLength(1); count++)
+                for (int count = 1; count < 3; count++)
                 {
                     options[count - 1] = storyBook[pageNumber, count];
                 }
@@ -53,24 +55,19 @@ namespace Interactive_Fiction
                 PrintStory();
 
                 newChoice = Choice(true, options);
-                playerChose = options[newChoice];
-
-                if (playerChose == storyBook[pageNumber, 1])
-                {
-                    pageNumber = Int32.Parse(storyBook[pageNumber, 3]);
-                }
-                else if (playerChose == storyBook[pageNumber, 2])
-                {
-                    pageNumber = Int32.Parse(storyBook[pageNumber, 4]);
-                }
-                else if (playerChose == "-1")
+                if (newChoice == -1)
                 {
                     QuestionQuit();
                 }
 
-                Console.SetCursorPosition(3, 33);
-                Console.WriteLine("Player chose " + playerChose);
-                Console.ReadKey(true);
+                else if (newChoice == 0)
+                {
+                    pageNumber = Int32.Parse(storyBook[pageNumber, 3]);
+                }
+                else if (newChoice == 1)
+                {
+                    pageNumber = Int32.Parse(storyBook[pageNumber, 4]);
+                }
 
                 if (pageNumber == 99)
                 {
@@ -137,7 +134,7 @@ namespace Interactive_Fiction
 
             Console.Write("╢");
 
-            for (int i = 32; i < 37; i++)
+            for (int i = 32; i < 36; i++)
             {
                 Console.SetCursorPosition(1, i);
                 Console.Write("║");
@@ -237,6 +234,8 @@ namespace Interactive_Fiction
 
         static void QuestionQuit()
         {
+            Console.Clear();
+            GameFrame();
             Console.SetCursorPosition(5, 5);
             Console.WriteLine("Are you sure you want to quit?");
 
@@ -244,16 +243,12 @@ namespace Interactive_Fiction
             options[1] = "NO";
 
             newChoice = Choice(false, options);
-            playerChose = options[newChoice];
 
-            if (playerChose == storyBook[pageNumber, 1])
+            if (newChoice == 0)
             {
-                pageNumber = Int32.Parse(storyBook[pageNumber, 3]);
+                pageNumber = 99;
             }
-            else if (playerChose == storyBook[pageNumber, 2])
-            {
-                pageNumber = Int32.Parse(storyBook[pageNumber, 4]);
-            }
+        }
 
         static void GameEnd()
         {
@@ -261,7 +256,7 @@ namespace Interactive_Fiction
             Console.SetCursorPosition(5, 5);
             Console.WriteLine("Thank you for testing my Interactive Fiction Prototype!");
             Console.SetCursorPosition(3, 33);
-            Console.Write("Press any key to quit. ");
+            Console.Write("Press any key to exit. ");
             Console.ReadKey(true);
         }
     }

@@ -15,7 +15,7 @@ namespace Interactive_Fiction
           //  |------------------------------------------------------------------------------------------------------------|
             {"Interactive Fiction Prototype\t*****************************\t\tBy Chris Schnurr", "blank", "blank", "blank", "blank"},
             {"Crossroads\t**********\t\tA dusty dirt road comes to a crossroads. A sign at the fork indicates that there is a village to the left\tand a forest to the right. ", "Left to Village", "Right to Forest", "2", "3"},
-            {"Village\t*******\t\tThe Village Square is a bustling hive of activity. Citizens go about their daily business and soldiers patrol the area.\tThe village pathways lead in different directions.\t\tTo the west is the Market District.\tTo the right is the road to the Castle.", "West to the Market District", "East to the Castle", "4", "5",},
+            {"Village\t*******\t\tThe Village Square is a bustling hive of activity. Citizens go about their daily business and soldiers patrol\tthe area. The village pathways lead in different directions.\t\tTo the west is the Market District.\tTo the right is the road to the Castle.", "West to the Market District", "East to the Castle", "4", "5",},
             {"Forest\t******\t\t", "Back to Crossroads", "Back to Crossroads", "1", "1",},
             {"Market District\t***************\t\t", "Back to Crossroads", "Back to Crossroads", "1", "1",},
             {"Castle\t******\t\t", "Back to Crossroads", "Back to Crossroads", "1", "1",},

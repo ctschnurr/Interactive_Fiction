@@ -8,256 +8,127 @@ namespace Interactive_Fiction
 {
     internal class Program
     {
+        static string[] story = { "Welcome to Ozzy's Odyssey!", "A great, menacing castle stands before you. A large wooden door leads inside, while a side road leads around to the back.;Proceed inside;Follow the path;2;3;" , "You venture inside the castle. The lobby is dimly lit with a few candles. Cobwebs decorate the corners of the room and dust covers the furniture. You can take a door to the left and up to the second level, or straight to enter the main hallway.;Head upstairs;Move to the hallway;4;5" , "You make your way around the side of the castle. Around the first corner you find a beautiful garden full of plants and flowers. The pathway continues on to the back of the castle.;Stop to smell the flowers;Proceed along the path;6;7" , "4" , "5" , "You decide to take a moment to enjoy the garden. You choose a particularly large red flower, move in close, and inhale. The flower is so intoxicating you do not notice the vine wrap around your ankle. The vine suddenly yanks you into the brush and the garden swallows you whole. You are dead." , "7" };
 
-        // static char[,] worldMap = new char[,]
-        static string[,] storyBook = new string[,]
-        {
-          //  |------------------------------------------------------------------------------------------------------------|
-            {"Interactive Fiction Prototype\t*****************************\t\tBy Chris Schnurr", "blank", "blank", "blank", "blank"},
-            {"Crossroads\t**********\t\tA dusty dirt road comes to a crossroads. A sign at the fork indicates that there is a village to the left\tand a forest to the right. ", "Left to Village", "Right to Forest", "2", "3"},
-            {"Village\t*******\t\tThe Village Square is a bustling hive of activity. Citizens go about their daily business and soldiers patrol\tthe area. The village pathways lead in different directions.\t\tTo the west is the Market District.\tTo the right is the road to the Castle.", "West to the Market District", "East to the Castle", "4", "5",},
-            {"Forest\t******\t\t", "Back to Crossroads", "Back to Crossroads", "1", "1",},
-            {"Market District\t***************\t\t", "Back to Crossroads", "Back to Crossroads", "1", "1",},
-            {"Castle\t******\t\t", "Back to Crossroads", "Back to Crossroads", "1", "1",},
-        };
-
-        static int pageNumber = 0;
-        static string getPageContents;
-        static int defaultRow = 5;
-        static int defaultColumn = 5;
-        static string[] options = {"blank" , "blank"};
-        static int newChoice;
-
+        static string[] currentPageContents = { "blank"};
+        static int currentPageNumber = 1;
+        static char[] separators = new char[] { ';'};
         static void Main(string[] args)
         {
             bool gameOver = false;
-            
-            Console.SetWindowSize(120, 40);
-            Console.BufferHeight = Console.WindowHeight;
 
-            GameFrame();
-            PrintStory();
-            Console.SetCursorPosition(3, 33);
-            Console.Write("Press any key to continue. ");
+            Console.WriteLine();
+            Console.WriteLine(story[0]);
+            Console.WriteLine();
+            Console.WriteLine("Please press any key to begin the story.");
             Console.ReadKey(true);
-            Console.Clear();
-
-            pageNumber++;
 
             while (gameOver == false)
             {
-                for (int count = 1; count < 3; count++)
+                GetStory();
+                
+                if (currentPageContents.Length == 1)
                 {
-                    options[count - 1] = storyBook[pageNumber, count];
-                }
+                    Console.Clear();
 
-                GameFrame();
-                PrintStory();
+                    PrintPlot(currentPageContents[0]);
 
-                newChoice = Choice(true, options);
-                if (newChoice == -1)
-                {
-                    QuestionQuit();
-                }
+                    Console.WriteLine();
+                    Console.WriteLine(currentPageContents[0]);
+                    Console.WriteLine();
+                    Console.WriteLine("You've completed the story!");
+                    Console.WriteLine();
+                    Console.WriteLine("A: Restart");
+                    Console.WriteLine("B: Quit");
+                    Console.WriteLine();
 
-                else if (newChoice == 0)
-                {
-                    pageNumber = Int32.Parse(storyBook[pageNumber, 3]);
-                }
-                else if (newChoice == 1)
-                {
-                    pageNumber = Int32.Parse(storyBook[pageNumber, 4]);
-                }
+                    ConsoleKeyInfo end = Console.ReadKey(true);
 
-                if (pageNumber == 99)
-                {
-                    gameOver = true;
-                }
-            }
-                GameEnd();
-        }
-
-        static void PrintStory()
-        {
-            Console.SetCursorPosition(5, 5);
-            getPageContents = storyBook[pageNumber, 0];
-            string[] PageContents = getPageContents.Split('\t');
-
-            int pageRow = defaultRow;
-
-            foreach (var line in PageContents)
-            {
-                Console.SetCursorPosition(defaultColumn, pageRow);
-                Console.WriteLine(line);
-                pageRow++;
-            }
-            
-
-
-        }
-
-        static void GameFrame()
-        {
-            Console.SetCursorPosition(1, 1);
-
-            // Console.Write("│┤╡╢←╕╣║╗╝╜╛┐╚╔╩╦╠═╬╧╔╩╦╠═╬╧╨╤╥╙╘╒╓╫╪┘┌█▄");╟╞╟╞┼──
-
-            Console.Write("╔");
-
-            for (int i = 0; i < 117; i++)
-            {
-                Console.Write("═");
-            }
-
-            Console.WriteLine("╗");
-
-            for (int i = 2; i < 31; i++)
-            {
-                Console.SetCursorPosition(1, i);
-                Console.Write("║");
-
-                for (int x = 0; x < 117; x++)
-                {
-                    Console.Write(" ");
-                }
-
-                Console.Write("║");
-            }
-
-            Console.SetCursorPosition(1, Console.CursorTop);
-            Console.Write("╟");
-
-            for (int i = 0; i < 117; i++)
-            {
-                Console.Write("─");
-            }
-
-            Console.Write("╢");
-
-            for (int i = 32; i < 36; i++)
-            {
-                Console.SetCursorPosition(1, i);
-                Console.Write("║");
-
-                for (int x = 0; x < 117; x++)
-                {
-                    Console.Write(" ");
-                }
-
-                Console.Write("║");
-            }
-
-
-            Console.SetCursorPosition(1, Console.CursorTop);
-            Console.Write("╚");
-
-            for (int i = 0; i < 117; i++)
-            {
-                Console.Write("═");
-            }
-
-            Console.WriteLine("╝");
-        }
-
-        public static int Choice(bool canCancel, params string[] options)
-        {
-
-            int startX = 3; // (Console.CursorLeft + 1);
-            int startY = 33; // Console.CursorTop;
-            const int optionsPerLine = 1;
-
-            int currentSelection = 0;
-
-            ConsoleKey key;
-
-            Console.CursorVisible = false;
-
-            do
-            {
-                Console.SetCursorPosition(startX, startY);
-
-                for (int i = 0; i < options.Length; i++)
-                {
-                    if (i == currentSelection)
+                    if (end.Key == ConsoleKey.A)
                     {
-                        Console.BackgroundColor = ConsoleColor.Blue;
+                        currentPageNumber = 1;
                     }
 
-                    Console.WriteLine(" " + options[i] + " ");
-
-                    Console.SetCursorPosition(startX, Console.CursorTop);
-
-                    Console.ResetColor();
+                    if (end.Key == ConsoleKey.B)
+                    {
+                        gameOver = true;
+                    }
                 }
 
-                key = Console.ReadKey(true).Key;
-
-                switch (key)
+                if (currentPageContents.Length == 5)
                 {
-                    case ConsoleKey.LeftArrow:
-                        {
-                            if (currentSelection % optionsPerLine > 0)
-                                currentSelection--;
-                            break;
-                        }
-                    case ConsoleKey.RightArrow:
-                        {
-                            if (currentSelection % optionsPerLine < optionsPerLine - 1)
-                                currentSelection++;
-                            break;
-                        }
-                    case ConsoleKey.UpArrow:
-                        {
-                            if (currentSelection >= optionsPerLine)
-                                currentSelection -= optionsPerLine;
-                            break;
-                        }
-                    case ConsoleKey.DownArrow:
-                        {
-                            if (currentSelection + optionsPerLine < options.Length)
-                                currentSelection += optionsPerLine;
-                            break;
-                        }
-                    case ConsoleKey.Escape:
-                        {
-                            if (canCancel)
-                                return -1;
-                            break;
-                        }
+                    Console.Clear();
+
+                    PrintPlot(currentPageContents[0]);
+
+                    Console.WriteLine();
+                    Console.WriteLine("Make Your Choice!");
+                    Console.WriteLine();
+                    Console.WriteLine("A: " + currentPageContents[1]);
+                    Console.WriteLine("B: " + currentPageContents[2]);
+                    Console.WriteLine();
+
+                    ConsoleKeyInfo choice = Console.ReadKey(true);
+
+                    if (choice.Key == ConsoleKey.A)
+                    {
+                        int nextPage = Int32.Parse(currentPageContents[3]);
+                        currentPageNumber = nextPage;
+                    }
+
+                    if (choice.Key == ConsoleKey.B)
+                    {
+                        int nextPage = Int32.Parse(currentPageContents[4]);
+                        currentPageNumber = nextPage;
+                    }
+
                 }
-            } while (key != ConsoleKey.Enter);
-
-            Console.CursorVisible = true;
-
-            return currentSelection;
-        }
-
-        static void QuestionQuit()
-        {
-            Console.Clear();
-            GameFrame();
-            Console.SetCursorPosition(5, 5);
-            Console.WriteLine("Are you sure you want to quit?");
-
-            options[0] = "YES";
-            options[1] = "NO";
-
-            newChoice = Choice(false, options);
-
-            if (newChoice == 0)
-            {
-                pageNumber = 99;
             }
         }
 
-        static void GameEnd()
+        static void GetStory()
         {
-            GameFrame();
-            Console.SetCursorPosition(5, 5);
-            Console.WriteLine("Thank you for testing my Interactive Fiction Prototype!");
-            Console.SetCursorPosition(3, 33);
-            Console.Write("Press any key to exit. ");
-            Console.ReadKey(true);
+            string temp = story[currentPageNumber];
+            currentPageContents = temp.Split(separators, StringSplitOptions.RemoveEmptyEntries);
+        }
+
+        static void PrintPlot(string plot)
+        {
+
+
+            if (plot.Length < 119)
+            {
+                Console.WriteLine(plot);
+            }
+
+            if (plot.Length > 119)
+            {
+                string newplot = null;
+                string lengthcheck = null;
+
+                string[] plotwords = plot.Split(' ');
+
+                for (int i = 0; i < plotwords.Length; i++)
+                {
+                    newplot = newplot + plotwords[i];
+                    newplot = newplot + " ";
+
+                    if (i + 1 < plotwords.Length)
+                    {
+                        lengthcheck = newplot + plotwords[i + 1];
+                    }
+                                            
+                    if (lengthcheck.Length > 119 || i +1 == plotwords.Length)
+                    {
+                        Console.WriteLine(newplot);
+                        newplot = null;
+                        lengthcheck = " ";
+                    }
+                }
+                
+            }
+
         }
     }
 }
+

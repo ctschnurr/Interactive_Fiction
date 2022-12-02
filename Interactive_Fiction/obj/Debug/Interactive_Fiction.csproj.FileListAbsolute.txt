@@ -6,3 +6,12 @@ C:\Users\w0467914\Documents\GitHub\C# Projects\Interactive_Fiction\Interactive_F
 C:\Users\w0467914\Documents\GitHub\C# Projects\Interactive_Fiction\Interactive_Fiction\obj\Debug\Interactive_Fiction.csproj.CoreCompileInputs.cache
 C:\Users\w0467914\Documents\GitHub\C# Projects\Interactive_Fiction\Interactive_Fiction\obj\Debug\Interactive_Fiction.exe
 C:\Users\w0467914\Documents\GitHub\C# Projects\Interactive_Fiction\Interactive_Fiction\obj\Debug\Interactive_Fiction.pdb
+C:\C# Projects\Interactive_Fiction\Interactive_Fiction\bin\Debug\Interactive_Fiction.exe.config
+C:\C# Projects\Interactive_Fiction\Interactive_Fiction\bin\Debug\Interactive_Fiction.exe
+C:\C# Projects\Interactive_Fiction\Interactive_Fiction\bin\Debug\Interactive_Fiction.pdb
+C:\C# Projects\Interactive_Fiction\Interactive_Fiction\obj\Debug\Interactive_Fiction.csproj.AssemblyReference.cache
+C:\C# Projects\Interactive_Fiction\Interactive_Fiction\obj\Debug\Interactive_Fiction.csproj.SuggestedBindingRedirects.cache
+C:\C# Projects\Interactive_Fiction\Interactive_Fiction\obj\Debug\Interactive_Fiction.csproj.CoreCompileInputs.cache
+C:\C# Projects\Interactive_Fiction\Interactive_Fiction\obj\Debug\Interactive_Fiction.exe
+C:\C# Projects\Interactive_Fiction\Interactive_Fiction\obj\Debug\Interactive_Fiction.pdb
+C:\C# Projects\Interactive_Fiction\Interactive_Fiction\bin\Debug\bin\Data\Sounds\click.wav

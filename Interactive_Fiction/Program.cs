@@ -22,17 +22,18 @@ namespace Interactive_Fiction
             "You approach the nearest bookshelf and begin to browse the titles. Most of the books are old and warn, covered in dust from years of stillness, except for two that appear to have been moved recently.;Look at book titled 'Greed';Look at book titled 'Hurricane Irene';8;9",
             "You reach for 'Greed' but it only tilts forward fromt he shelf, triggering a hidden mechanism. The book case slowly slides to the side revealing a dark, secret hallway.;Proceed down the secret hallway;Return to the Library;15;4",
             "You pull 'Hurricane Irene' from the shelf and open it. A huge gust of wind emits from the book, knocking it from your hand and onto the floor, still open. The room fills with the torrential chaos of Hurricane Irene, battering the library, furniture, and you until essentially nothing is left. You are dead.",
-            "GARDEN PATH",
-            "The kitchen appears to have been cleaned shortly before being abandoned. The counters are clear and tidy beneath the layer of dust. A large dingy fridge sits silently in the corner and a back door leads out to a porch.;Open the Fridge;Head to the Porch;13;14",
-            "LOUNGE",
-            "FRIDGE",
-            "PORCH",
-            "SECRET HALLWAY",
-            "16",
-            "17",
-            "18",
-            "19",
-            "20",
+            "You decide to continue forward down the path and away from the garden. As you round the corner to the back of the castle the pathway splits and cuts off to the right. In the distance you see a dock on a misty lake. To your left is the back door of the castle.;Check out the lake;Enter the castle;16;11",
+            "The kitchen appears to have been cleaned shortly before being abandoned. The counters are clear and tidy beneath the layer of dust. A large dingy fridge sits silently in the corner. A door appears to lead outside, but can't be opened.;Open the Fridge;Head back to the hallway;13;5",
+            "The lounge is dimly lit and dusty like the rest of the castle. A large sofa sits by the far wall, and a bar with various bottles of liquid is against the side.;Sit on the sofa;Check out the bar;18;19",
+            "You reach for the fridge handle but just before you touch it the door bursts open. A giant grotesque tentacle reaches out, wraps around you, and pulls you to another demension. You are dead.",
+            "You pull the chain but instead of turning on a light as you'd hoped, a trap door opens beneath you and you fall into the darkness. You are dead.",
+            "You enter the secret hallway and walk through the darkness until you reach a door. By feeling your way you find a door knob, and a chain that could be a light switch.;Try the Door;Pull the Chain;20;14",
+            "You approach the misty lake. It is still and quiet. You decide to pick up a stone to skip across. You toss the stone and it skips into the mist. As you turn to walk away, the stone returns and strikes you in the back of the head. You are dead.",
+            "You take a long swig from the red liquid. You slowly go numb, then limp, then melt into a puddle on the floor. You are dead.",
+            "You have a seat on the sofa. It is quite comfortable! You rest for a few minutes until you begin to feel sleepy. Slowly unconciousness overtakes you, and you begin to sink through the couch fabric and into the sofa itself. The couch digests you slowly over days. You are dead.",
+            "You have a seat at the bar and pull two large bottles toward you. One is red and clear, the other blue and murky. Now you're here you have to drink!;Try the red;Drink the blue;17;21",
+            "You try the door knob and the door swings open to reveal a room, empty save for a large chest full of treasure. You are alive, and now very rich. You won!",
+            "You try the blue liquid. A coldness begins in your toes and slowly begins to radiate up your body. You realize you can't move as this feeling overtakes you. Within minutes you are frozen solid, never to move again. You area dead."
 
         };
 
@@ -40,7 +41,7 @@ namespace Interactive_Fiction
         static int currentPageNumber = 1;
         static char[] separators = new char[] {';'};
 
-        static System.Media.SoundPlayer click = new System.Media.SoundPlayer(@"C:\C# Projects\Interactive_Fiction\Interactive_Fiction\bin\Data\Sounds\click.wav");
+        static System.Media.SoundPlayer click = new System.Media.SoundPlayer(@"C:\Users\w0467914\Documents\GitHub\C# Projects\Interactive_Fiction\Interactive_Fiction\bin\Data\Sounds\click.wav");
 
         static void Main(string[] args)
         {

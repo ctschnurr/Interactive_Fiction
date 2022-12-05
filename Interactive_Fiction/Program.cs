@@ -41,10 +41,11 @@ namespace Interactive_Fiction
         static int currentPageNumber = 1;
         static char[] separators = new char[] {';'};
 
-        static System.Media.SoundPlayer click = new System.Media.SoundPlayer(@"C:\Users\w0467914\Documents\GitHub\C# Projects\Interactive_Fiction\Interactive_Fiction\bin\Data\Sounds\click.wav");
+        static System.Media.SoundPlayer click = new System.Media.SoundPlayer(@".\bin\Data\Sounds\click.wav");
 
         static void Main(string[] args)
         {
+
             bool gameOver = false;
             Console.CursorVisible = false;
             Console.SetBufferSize(Console.WindowWidth, Console.WindowHeight);
@@ -294,6 +295,7 @@ namespace Interactive_Fiction
 
         static int ErrorCheck(string pageNum)
         {
+
             int nextPage;
             bool isNumber = int.TryParse(pageNum, out nextPage);
 
